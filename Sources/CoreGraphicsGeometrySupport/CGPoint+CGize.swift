@@ -19,7 +19,7 @@ public extension CGSize {
 public extension CGPoint {
     init(_ scalars: [CGFloat]) {
         assert(scalars.count == 2)
-        self = CGPoint(x: scalars[0], y: scalars[1])
+        self.init(x: scalars[0], y: scalars[1])
     }
 
     var scalars: [CGFloat] {
@@ -31,7 +31,7 @@ public extension CGPoint {
 public extension CGSize {
     init(_ scalars: [CGFloat]) {
         assert(scalars.count == 2)
-        self = CGSize(width: scalars[0], height: scalars[1])
+        self.init(width: scalars[0], height: scalars[1])
     }
 
     var scalars: [CGFloat] {
@@ -44,13 +44,13 @@ public extension CGSize {
 
 extension CGPoint: ExpressibleByArrayLiteral {
     public init(arrayLiteral elements: CGFloat...) {
-        self = CGPoint(elements)
+        self.init(elements)
     }
 }
 
 extension CGSize: ExpressibleByArrayLiteral {
     public init(arrayLiteral elements: CGFloat...) {
-        self = CGSize(elements)
+        self.init(elements)
     }
 }
 
@@ -208,6 +208,9 @@ public extension CGPoint {
         lhs = lhs / rhs
     }
 
+    static func * (lhs: CGFloat, rhs: Self) -> Self {
+        return Self(lhs * rhs.x, lhs * rhs.y)
+    }
 }
 
 public extension CGSize {
@@ -229,6 +232,7 @@ public extension CGSize {
     }
 
 }
+
 
 // MARK: Conversion
 
