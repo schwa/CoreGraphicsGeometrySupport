@@ -2,22 +2,22 @@ import CoreGraphics
 
 // MARK: Label-less inits
 
-extension CGPoint {
-    public init(_ x: CGFloat, _ y: CGFloat) {
+public extension CGPoint {
+    init(_ x: CGFloat, _ y: CGFloat) {
         self.init(x: x, y: y)
     }
 }
 
-extension CGSize {
-    public init(_ width: CGFloat, _ height: CGFloat) {
+public extension CGSize {
+    init(_ width: CGFloat, _ height: CGFloat) {
         self.init(width: width, height: height)
     }
 }
 
 // MARK: To/From Arrays
 
-extension CGPoint {
-    public init(_ scalars: [CGFloat]) {
+public extension CGPoint {
+    init(_ scalars: [CGFloat]) {
         assert(scalars.count == 2)
         self = CGPoint(x: scalars[0], y: scalars[1])
     }
@@ -28,8 +28,8 @@ extension CGPoint {
     }
 }
 
-extension CGSize {
-    public init(_ scalars: [CGFloat]) {
+public extension CGSize {
+    init(_ scalars: [CGFloat]) {
         assert(scalars.count == 2)
         self = CGSize(width: scalars[0], height: scalars[1])
     }
@@ -70,23 +70,23 @@ extension CGSize {
 
 // MARK: To/From Tuples
 
-extension CGPoint {
-    public init(tuple: (CGFloat, CGFloat)) {
+public extension CGPoint {
+    init(tuple: (CGFloat, CGFloat)) {
         self.init(x: tuple.0, y: tuple.1)
     }
 
-    public var tuple: (CGFloat, CGFloat) {
+    var tuple: (CGFloat, CGFloat) {
         (x, y)
         // TODO: Provide a setter
     }
 }
 
-extension CGSize {
-    public init(tuple: (CGFloat, CGFloat)) {
+public extension CGSize {
+    init(tuple: (CGFloat, CGFloat)) {
         self.init(width: tuple.0, height: tuple.1)
     }
 
-    public var tuple: (CGFloat, CGFloat) {
+    var tuple: (CGFloat, CGFloat) {
         (width, height)
         // TODO: Provide a setter
     }
