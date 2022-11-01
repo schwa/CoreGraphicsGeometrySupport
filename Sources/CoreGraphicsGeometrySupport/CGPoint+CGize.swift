@@ -56,13 +56,13 @@ extension CGSize: ExpressibleByArrayLiteral {
 
 // MARK: Map
 
-extension CGPoint {
+public extension CGPoint {
     func map(_ block: (CGFloat) throws -> CGFloat) rethrows -> Self {
         return Self(try block(x), try block(y))
     }
 }
 
-extension CGSize {
+public extension CGSize {
     func map(_ block: (CGFloat) throws -> CGFloat) rethrows -> Self {
         return Self(try block(width), try block(height))
     }
