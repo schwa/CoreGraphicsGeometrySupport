@@ -166,7 +166,7 @@ only_rules:
     - return_value_from_void_function
     - self_binding
     - self_in_property_initialization
-    - shorthand_operator
+    # - shorthand_operator
     # - single_test_class
     - sorted_first_last
     # - sorted_imports
