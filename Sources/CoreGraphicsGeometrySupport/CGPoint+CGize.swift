@@ -24,7 +24,7 @@ public extension CGPoint {
 
     var scalars: [CGFloat] {
         // TODO: Provide a setter
-        return [x, y]
+        [x, y]
     }
 }
 
@@ -36,7 +36,7 @@ public extension CGSize {
 
     var scalars: [CGFloat] {
         // TODO: Provide a setter
-        return [width, height]
+        [width, height]
     }
 }
 
@@ -58,13 +58,13 @@ extension CGSize: ExpressibleByArrayLiteral {
 
 public extension CGPoint {
     func map(_ block: (CGFloat) throws -> CGFloat) rethrows -> Self {
-        return Self(try block(x), try block(y))
+        Self(try block(x), try block(y))
     }
 }
 
 public extension CGSize {
     func map(_ block: (CGFloat) throws -> CGFloat) rethrows -> Self {
-        return Self(try block(width), try block(height))
+        Self(try block(width), try block(height))
     }
 }
 
@@ -111,13 +111,12 @@ extension CGSize: Hashable {
 // MARK: Math with Self types
 
 public extension CGPoint {
-
     static prefix func - (rhs: Self) -> Self {
-        return Self(-rhs.x, -rhs.y)
+        Self(-rhs.x, -rhs.y)
     }
 
     static func + (lhs: Self, rhs: Self) -> Self {
-        return Self(lhs.x + rhs.x, lhs.y + rhs.y)
+        Self(lhs.x + rhs.x, lhs.y + rhs.y)
     }
 
     static func += (lhs: inout Self, rhs: Self) {
@@ -125,7 +124,7 @@ public extension CGPoint {
     }
 
     static func - (lhs: Self, rhs: Self) -> Self {
-        return Self(lhs.x - rhs.x, lhs.y - rhs.y)
+        Self(lhs.x - rhs.x, lhs.y - rhs.y)
     }
 
     static func -= (lhs: inout Self, rhs: Self) {
@@ -133,7 +132,7 @@ public extension CGPoint {
     }
 
     static func * (lhs: Self, rhs: Self) -> Self {
-        return Self(lhs.x * rhs.x, lhs.y * rhs.y)
+        Self(lhs.x * rhs.x, lhs.y * rhs.y)
     }
 
     static func *= (lhs: inout Self, rhs: Self) {
@@ -141,7 +140,7 @@ public extension CGPoint {
     }
 
     static func / (lhs: Self, rhs: Self) -> Self {
-        return Self(lhs.x / rhs.x, lhs.y / rhs.y)
+        Self(lhs.x / rhs.x, lhs.y / rhs.y)
     }
 
     static func /= (lhs: inout Self, rhs: Self) {
@@ -150,13 +149,12 @@ public extension CGPoint {
 }
 
 public extension CGSize {
-
     static prefix func - (rhs: Self) -> Self {
-        return Self(-rhs.width, -rhs.width)
+        Self(-rhs.width, -rhs.width)
     }
 
     static func + (lhs: Self, rhs: Self) -> Self {
-        return Self(lhs.width + rhs.width, lhs.height + rhs.height)
+        Self(lhs.width + rhs.width, lhs.height + rhs.height)
     }
 
     static func += (lhs: inout Self, rhs: Self) {
@@ -164,7 +162,7 @@ public extension CGSize {
     }
 
     static func - (lhs: Self, rhs: Self) -> Self {
-        return Self(lhs.width - rhs.width, lhs.height - rhs.height)
+        Self(lhs.width - rhs.width, lhs.height - rhs.height)
     }
 
     static func -= (lhs: inout Self, rhs: Self) {
@@ -172,7 +170,7 @@ public extension CGSize {
     }
 
     static func * (lhs: Self, rhs: Self) -> Self {
-        return Self(lhs.width * rhs.width, lhs.height * rhs.height)
+        Self(lhs.width * rhs.width, lhs.height * rhs.height)
     }
 
     static func *= (lhs: inout Self, rhs: Self) {
@@ -180,7 +178,7 @@ public extension CGSize {
     }
 
     static func / (lhs: Self, rhs: Self) -> Self {
-        return Self(lhs.width / rhs.width, lhs.height / rhs.height)
+        Self(lhs.width / rhs.width, lhs.height / rhs.height)
     }
 
     static func /= (lhs: inout Self, rhs: Self) {
@@ -191,9 +189,8 @@ public extension CGSize {
 // MARK: Math with Scalars
 
 public extension CGPoint {
-
     static func * (lhs: Self, rhs: CGFloat) -> Self {
-        return Self(lhs.x * rhs, lhs.y * rhs)
+        Self(lhs.x * rhs, lhs.y * rhs)
     }
 
     static func *= (lhs: inout Self, rhs: CGFloat) {
@@ -201,7 +198,7 @@ public extension CGPoint {
     }
 
     static func / (lhs: Self, rhs: CGFloat) -> Self {
-        return Self(lhs.x / rhs, lhs.y / rhs)
+        Self(lhs.x / rhs, lhs.y / rhs)
     }
 
     static func /= (lhs: inout Self, rhs: CGFloat) {
@@ -209,14 +206,13 @@ public extension CGPoint {
     }
 
     static func * (lhs: CGFloat, rhs: Self) -> Self {
-        return Self(lhs * rhs.x, lhs * rhs.y)
+        Self(lhs * rhs.x, lhs * rhs.y)
     }
 }
 
 public extension CGSize {
-
     static func * (lhs: Self, rhs: CGFloat) -> Self {
-        return Self(lhs.width * rhs, lhs.height * rhs)
+        Self(lhs.width * rhs, lhs.height * rhs)
     }
 
     static func *= (lhs: inout Self, rhs: CGFloat) {
@@ -224,15 +220,13 @@ public extension CGSize {
     }
 
     static func / (lhs: Self, rhs: CGFloat) -> Self {
-        return Self(lhs.width / rhs, lhs.height / rhs)
+        Self(lhs.width / rhs, lhs.height / rhs)
     }
 
     static func /= (lhs: inout Self, rhs: CGFloat) {
         lhs = lhs / rhs
     }
-
 }
-
 
 // MARK: Conversion
 
@@ -251,9 +245,8 @@ public extension CGSize {
 // MARK: Random
 
 public extension CGPoint {
-
-    static func random <T>(x: ClosedRange<CGFloat>, y: ClosedRange<CGFloat>, using generator: inout T) -> Self where T: RandomNumberGenerator {
-        return Self(x: CGFloat.random(in: x, using: &generator), y: CGFloat.random(in: y, using: &generator))
+    static func random(x: ClosedRange<CGFloat>, y: ClosedRange<CGFloat>, using generator: inout some RandomNumberGenerator) -> Self {
+        Self(x: CGFloat.random(in: x, using: &generator), y: CGFloat.random(in: y, using: &generator))
     }
 
     static func random(x: ClosedRange<CGFloat>, y: ClosedRange<CGFloat>) -> Self {
@@ -261,8 +254,8 @@ public extension CGPoint {
         return random(x: x, y: y, using: &rng)
     }
 
-    static func random<T>(using generator: inout T) -> Self where T: RandomNumberGenerator {
-        return Self.random(x: 0...1, y: 0...1, using: &generator)
+    static func random(using generator: inout some RandomNumberGenerator) -> Self {
+        Self.random(x: 0 ... 1, y: 0 ... 1, using: &generator)
     }
 
     static func random() -> Self {
@@ -270,20 +263,19 @@ public extension CGPoint {
         return Self.random(using: &rng)
     }
 
-    static func random<T>(in rect: CGRect, using generator: inout T) -> Self where T: RandomNumberGenerator {
-        return Self.random(x: rect.minX ... rect.maxX, y: rect.minY ... rect.maxY, using: &generator)
+    static func random(in rect: CGRect, using generator: inout some RandomNumberGenerator) -> Self {
+        Self.random(x: rect.minX ... rect.maxX, y: rect.minY ... rect.maxY, using: &generator)
     }
 
     static func random(in rect: CGRect) -> Self {
         var rng = SystemRandomNumberGenerator()
         return Self.random(in: rect, using: &rng)
     }
-
 }
 
 public extension CGSize {
-    static func random <T>(width: ClosedRange<CGFloat>, height: ClosedRange<CGFloat>, using generator: inout T) -> Self where T: RandomNumberGenerator {
-        return Self(width: CGFloat.random(in: width, using: &generator), height: CGFloat.random(in: height, using: &generator))
+    static func random(width: ClosedRange<CGFloat>, height: ClosedRange<CGFloat>, using generator: inout some RandomNumberGenerator) -> Self {
+        Self(width: CGFloat.random(in: width, using: &generator), height: CGFloat.random(in: height, using: &generator))
     }
 
     static func random(width: ClosedRange<CGFloat>, height: ClosedRange<CGFloat>) -> Self {

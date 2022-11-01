@@ -1,6 +1,5 @@
 import CoreGraphics
 
-
 // MARK: CGRect
 
 public extension CGRect {
@@ -135,4 +134,3 @@ public extension CGRect {
         CGPoint(x: maxX, y: maxY)
     }
 }
-
