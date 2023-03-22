@@ -154,7 +154,7 @@ public extension CGAffineTransform {
 
 public extension CGAffineTransform {
     func transform(point: CGPoint) -> CGPoint {
-        CGPoint(x: point.x * a + point.y * d, y: point.x * c + point.y * d)
+        return CGPointApplyAffineTransform(point, self)
     }
 }
 
