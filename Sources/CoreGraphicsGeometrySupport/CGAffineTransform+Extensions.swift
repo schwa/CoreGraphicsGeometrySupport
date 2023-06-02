@@ -202,3 +202,62 @@ public extension CGAffineTransform {
 //        }
 //    }
 }
+
+// MARK: Decompose
+
+public extension CGAffineTransform {
+
+    /*                      |------------------ CGAffineTransformComponents ----------------|
+     *
+     *      | a  b  0 |     | sx  0  0 |   |  1  0  0 |   | cos(t)  sin(t)  0 |   | 1  0  0 |
+     *      | c  d  0 |  =  |  0 sy  0 | * | sh  1  0 | * |-sin(t)  cos(t)  0 | * | 0  1  0 |
+     *      | tx ty 1 |     |  0  0  1 |   |  0  0  1 |   |   0       0     1 |   | tx ty 1 |
+     *  CGAffineTransform      scale           shear            rotation          translation
+     */
+
+    /*
+     | a11 a12 0 |    | a11 a21 0 |
+     | a21 a22 0 | vs | a12 a22 0 |
+     | tx  ty  0 |    | tx  ty  0 |
+     */
+
+    var decompose: (translation: CGPoint, scale: CGPoint, rotation: CGFloat, shear: CGFloat) {
+        // https://math.stackexchange.com/questions/612006/decomposing-an-affine-transformation
+        let a11 = a
+        let a12 = c
+        let a21 = b
+        let a22 = d
+
+        let sx = sqrt(a11 * a11 + a21 * a21)
+        let 𝜃 = atan(a21 / a11)
+        let msy = a12 * cos(𝜃) + a22 * sin(𝜃)
+        let sy: Double
+        if sin(𝜃) != 0 {
+            sy = (msy * cos(𝜃) - a12) / sin(𝜃)
+        }
+        else {
+            sy = (a22 - msy * sin(𝜃)) / cos(𝜃)
+        }
+        let m = msy / sy
+
+        return (translation, CGPoint(sx, sy), 𝜃, m)
+    }
+
+
+    var translation: CGPoint {
+        return CGPoint(x: tx, y: ty)
+    }
+
+    var rotation: CGFloat {
+        return decompose.rotation
+    }
+
+    var scale: CGPoint {
+        return decompose.scale
+    }
+
+    var shear: CGFloat {
+        return decompose.shear
+    }
+}
+

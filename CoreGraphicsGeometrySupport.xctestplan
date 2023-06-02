@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "C1EEE5C3-EC2C-4AB3-8988-8D77A92DBECA",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "CoreGraphicsGeometrySupportTests",
+        "name" : "CoreGraphicsGeometrySupportTests"
+      }
+    }
+  ],
+  "version" : 1
+}
