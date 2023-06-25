@@ -1,13 +1,5 @@
 import CoreGraphics
 
-// MARK: Printable
-
-extension CGAffineTransform: CustomStringConvertible {
-    public var description: String {
-        "CGAffineTransform(\(a), \(b), \(c), \(d), \(tx), \(ty))"
-    }
-}
-
 // MARK: Constructors
 
 public extension CGAffineTransform {
@@ -44,15 +36,14 @@ public extension CGAffineTransform {
     }
 
     init(rotation: CGFloat, origin: CGPoint) {
-        self = CGAffineTransform(translation: -origin) + CGAffineTransform(rotation: rotation) + CGAffineTransform(translation: origin)
+        self = CGAffineTransform(translation: -origin) * CGAffineTransform(rotation: rotation) * CGAffineTransform(translation: origin)
     }
 }
 
 // MARK: -
 
+@available(*, deprecated, message: "Deprecated")
 public extension CGAffineTransform {
-    // TODO: Most of these should be removed and the normal CGAffineTransform code relied on
-
     func translated(_ translation: CGPoint) -> CGAffineTransform {
         translatedBy(x: translation.x, y: translation.y)
     }
@@ -74,7 +65,7 @@ public extension CGAffineTransform {
     }
 
     func scaled(_ scale: CGFloat, origin: CGPoint) -> CGAffineTransform {
-        self + CGAffineTransform(scale: scale, origin: origin)
+        self * CGAffineTransform(scale: scale, origin: origin)
     }
 
     func rotated(_ angle: CGFloat) -> CGAffineTransform {
@@ -86,6 +77,7 @@ public extension CGAffineTransform {
     }
 }
 
+@available(*, deprecated, message: "Deprecated")
 public extension CGAffineTransform {
     mutating func translate(translation: CGPoint) -> CGAffineTransform {
         self = translated(tx: translation.x, ty: translation.y)
@@ -140,12 +132,23 @@ public extension CGAffineTransform {
 
 // MARK: Concatination via the + and += operators
 
+@available(*, deprecated, message: "Use operator * instead of +")
 public extension CGAffineTransform {
     static func + (lhs: CGAffineTransform, rhs: CGAffineTransform) -> CGAffineTransform {
         lhs.concatenating(rhs)
     }
 
     static func += (lhs: inout CGAffineTransform, rhs: CGAffineTransform) {
+        lhs = lhs.concat(other: rhs)
+    }
+}
+
+public extension CGAffineTransform {
+    static func * (lhs: CGAffineTransform, rhs: CGAffineTransform) -> CGAffineTransform {
+        lhs.concatenating(rhs)
+    }
+
+    static func *= (lhs: inout CGAffineTransform, rhs: CGAffineTransform) {
         lhs = lhs.concat(other: rhs)
     }
 }

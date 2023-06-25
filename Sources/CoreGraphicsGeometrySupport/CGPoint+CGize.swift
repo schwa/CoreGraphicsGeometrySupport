@@ -92,22 +92,6 @@ public extension CGSize {
     }
 }
 
-// MARK: Hashable
-
-extension CGPoint: Hashable {
-    public func hash(into hasher: inout Hasher) {
-        x.hash(into: &hasher)
-        y.hash(into: &hasher)
-    }
-}
-
-extension CGSize: Hashable {
-    public func hash(into hasher: inout Hasher) {
-        width.hash(into: &hasher)
-        height.hash(into: &hasher)
-    }
-}
-
 // MARK: Math with Self types
 
 public extension CGPoint {

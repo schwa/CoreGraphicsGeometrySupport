@@ -74,13 +74,6 @@ public extension CGRect {
     }
 }
 
-extension CGRect: Hashable {
-    public func hash(into hasher: inout Hasher) {
-        origin.hash(into: &hasher)
-        size.hash(into: &hasher)
-    }
-}
-
 // MARK: -
 
 public extension CGRect {
